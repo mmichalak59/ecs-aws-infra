@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 
   tags = {
     Name = "mainNetwork"
@@ -7,8 +7,8 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public-subnet-a" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "eu-west-1a"
 
   tags = {
@@ -17,8 +17,8 @@ resource "aws_subnet" "public-subnet-a" {
 }
 
 resource "aws_subnet" "public-subnet-b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.2.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.2.0/24"
   availability_zone = "eu-west-1b"
 
   tags = {
@@ -27,8 +27,8 @@ resource "aws_subnet" "public-subnet-b" {
 }
 
 resource "aws_subnet" "private-subnet-a" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.3.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.3.0/24"
   availability_zone = "eu-west-1a"
 
   tags = {
@@ -37,8 +37,8 @@ resource "aws_subnet" "private-subnet-a" {
 }
 
 resource "aws_subnet" "private-subnet-b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.4.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.4.0/24"
   availability_zone = "eu-west-1b"
 
   tags = {
@@ -55,7 +55,7 @@ resource "aws_internet_gateway" "gw" {
 }
 
 resource "aws_eip" "nat-eip" {
-   tags = {
+  tags = {
     Name = "nat-eip"
   }
 }

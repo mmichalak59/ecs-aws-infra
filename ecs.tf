@@ -1,5 +1,5 @@
 module "label" {
-  source  = "cloudposse/label/null"
+  source = "cloudposse/label/null"
 
   namespace = "private"
   name      = "pna"
@@ -21,7 +21,7 @@ module "ecs_cluster" {
       instance_type               = "t3.medium"
       key_name                    = "ec2-key"
       security_group_ids          = [aws_security_group.allin.id]
-      subnet_ids                  = [aws_subnet.private-subnet-a.id,aws_subnet.private-subnet-b.id]
+      subnet_ids                  = [aws_subnet.private-subnet-a.id, aws_subnet.private-subnet-b.id]
       associate_public_ip_address = false
       min_size                    = 1
       max_size                    = 1
@@ -31,26 +31,26 @@ module "ecs_cluster" {
 
 module "ecs_alb_service_task_pna" {
   source = "cloudposse/ecs-alb-service-task/aws"
-  
-  namespace                          = var.namespace
-  stage                              = var.stage
-  name                               = var.name
 
-  alb_security_group                 = aws_security_group.allin.id
-  container_definition_json          = file("pna-revision2.json")
-  ecs_cluster_arn                    = module.ecs_cluster.arn
-  ecs_load_balancers                 =  [{
+  namespace = var.namespace
+  stage     = var.stage
+  name      = var.name
+
+  alb_security_group        = aws_security_group.allin.id
+  container_definition_json = file("pna-revision2.json")
+  ecs_cluster_arn           = module.ecs_cluster.arn
+  ecs_load_balancers = [{
     container_name   = "pna"
     container_port   = 5000
     elb_name         = null
     target_group_arn = module.alb.default_target_group_arn
   }]
 
-  launch_type                        = "EC2"
-  vpc_id                             = aws_vpc.main.id
-  security_group_ids                 = [aws_security_group.allin.id]
-  subnet_ids                         = [aws_subnet.private-subnet-a.id,aws_subnet.private-subnet-b.id]
-  network_mode                       = "awsvpc"
-  desired_count                      = 1
+  launch_type        = "EC2"
+  vpc_id             = aws_vpc.main.id
+  security_group_ids = [aws_security_group.allin.id]
+  subnet_ids         = [aws_subnet.private-subnet-a.id, aws_subnet.private-subnet-b.id]
+  network_mode       = "awsvpc"
+  desired_count      = 1
 
 }

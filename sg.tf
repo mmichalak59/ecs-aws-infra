@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow_basic" {
-  name        = "Allow ICMP and SSH"
-  vpc_id      = aws_vpc.main.id
+  name   = "Allow ICMP and SSH"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Allow ICMP and SSH"
   }
@@ -13,7 +13,7 @@ resource "aws_security_group" "allow_basic" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-   ingress {
+  ingress {
     from_port        = -1
     to_port          = -1
     protocol         = "icmp"
@@ -32,8 +32,8 @@ resource "aws_security_group" "allow_basic" {
 }
 
 resource "aws_security_group" "allow_http" {
-  name        = "Allow HTTP"
-  vpc_id      = aws_vpc.main.id
+  name   = "Allow HTTP"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Allow HTTP"
   }
@@ -57,8 +57,8 @@ resource "aws_security_group" "allow_http" {
 }
 
 resource "aws_security_group" "allow_sql" {
-  name        = "Allow SQL"
-  vpc_id      = aws_vpc.main.id
+  name   = "Allow SQL"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Allow SQL"
   }
@@ -82,8 +82,8 @@ resource "aws_security_group" "allow_sql" {
 }
 
 resource "aws_security_group" "allin" {
-  name        = "Allow all traffic"
-  vpc_id      = aws_vpc.main.id
+  name   = "Allow all traffic"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Allow all trafic"
   }
