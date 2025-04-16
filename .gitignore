@@ -1,2 +1,5 @@
-.terraform*
-terraform*
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+ec2-key
+ec2-key.pub
